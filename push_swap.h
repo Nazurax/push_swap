@@ -16,6 +16,12 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+// Definición de códigos de error
+# define ERROR_MALLOC 1
+# define ERROR_INVALID_INPUT 2
+# define ERROR_DUPLICATE 3
+# define ERROR_OVERFLOW 4
+
 typedef struct s_stack
 {
     int value;
@@ -24,6 +30,9 @@ typedef struct s_stack
 
 // Función principal
 void push_swap(t_stack **a, t_stack **b);
+
+// Manejo de errores
+void handle_error(t_stack **a, t_stack **b, int error_code);
 
 // Algoritmos de ordenamiento
 void radix_sort(t_stack **a, t_stack **b);
@@ -49,7 +58,7 @@ void rrr(t_stack **a, t_stack **b);
 int stack_size(t_stack *stack);
 int is_sorted(t_stack *stack);
 t_stack *parse_input(int argc, char **argv);
-void push_back(t_stack **stack, int value);
+int push_back(t_stack **stack, int value);
 int get_max_bits(t_stack *stack);
 int get_max_value(t_stack *stack);
 int is_valid_number(char *str);
@@ -60,36 +69,3 @@ void push(t_stack **src, t_stack **dest);
 int ft_atoi(const char *str, int *error);
 
 #endif
-/*#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct s_stack
-{
-    int value;
-    struct s_stack *next;
-} t_stack;
-
-void push_swap(t_stack **a, t_stack **b);
-void radix_sort(t_stack **a, t_stack **b);
-void sa(t_stack **a);
-void pb(t_stack **a, t_stack **b);
-void ra(t_stack **a);
-void pa(t_stack **a, t_stack **b);
-int stack_size(t_stack *stack);
-int is_sorted(t_stack *stack);
-t_stack *parse_input(int argc, char **argv);
-void push_back(t_stack **stack, int value);
-int get_max_bits(t_stack *stack);
-int is_valid_number(char *str);
-int is_duplicate(t_stack *stack, int num);
-void free_stack(t_stack *stack);
-void small_sort(t_stack **a, t_stack **b);
-void swap(t_stack *stack);
-void push(t_stack **src, t_stack **dest);
-int ft_atoi(const char *str);
-
-#endif
-*/

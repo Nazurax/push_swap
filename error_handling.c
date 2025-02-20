@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alortiz- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 16:24:52 by alortiz-          #+#    #+#             */
-/*   Updated: 2025/02/18 16:24:58 by alortiz-         ###   ########.fr       */
+/*   Created: 2025/02/19 15:38:48 by alortiz-          #+#    #+#             */
+/*   Updated: 2025/02/19 15:38:51 by alortiz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stddef.h>
 
-int main(int argc, char **argv)
+void handle_error(t_stack **a, t_stack **b, int error_code)
 {
-    t_stack *a;
-    t_stack *b;
-
-    if (argc < 2)
-        return (0);
-        
-    a = NULL;
-    b = NULL;
-    
-    a = parse_input(argc, argv);
-    if (!a)
-        return (1);
-        
-    push_swap(&a, &b);
-    
-    free_stack(a);
-    free_stack(b);
-    return (0);
+    if (a)
+        free_stack(*a);
+    if (b)
+        free_stack(*b);
+    write(2, "Error\n", 6);
+    exit(error_code);
 }

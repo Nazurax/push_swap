@@ -78,14 +78,14 @@ int is_duplicate(t_stack *stack, int num)
 }
 
 
-void push_back(t_stack **a, int value)
+int push_back(t_stack **a, int value)
 {
     t_stack *new_node;
     t_stack *last;
 
     new_node = (t_stack *)malloc(sizeof(t_stack));
     if (!new_node)
-        return;  // Manejo de error en caso de fallo de malloc
+        return (0);
     new_node->value = value;
     new_node->next = NULL;
     if (*a == NULL)
@@ -99,4 +99,5 @@ void push_back(t_stack **a, int value)
             last = last->next;
         last->next = new_node;
     }
+    return (1);
 }
