@@ -2,8 +2,10 @@ NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = main.c push_swap.c operations.c operations1.c operations2.c radix_sort.c \
-      stack_utils.c utils.c input_parser.c small_sort.c ft_atoi.c error_handling.c
+SRC = main.c push_swap.c rotaters.c rotaters_2.c pushers.c swapers.c \
+      stack_utils.c utils.c utils_2.c input_parser.c small_sort.c \
+      small_sort_2.c error_handling.c optimize.c
+
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   pushers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alortiz- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 16:27:03 by alortiz-          #+#    #+#             */
-/*   Updated: 2025/02/18 16:27:06 by alortiz-         ###   ########.fr       */
+/*   Created: 2025/02/17 18:21:55 by alortiz-          #+#    #+#             */
+/*   Updated: 2025/02/20 12:53:48 by alortiz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    push_swap(t_stack **a, t_stack **b)
+void pa(t_stack **a, t_stack **b)
 {
-    int size;
+    t_stack *tmp;
 
-    if (!*a || is_sorted(*a))
-        return ;
-    size = stack_size(*a);
-    if (size == 2 && (*a)->value > (*a)->next->value)
-        sa(a);
-    else if (size == 3)
-        optimized_sort_three(a);
-    else if (size == 4)
-        sort_four(a, b);
-    else if (size <= 6)
-        sort_five(a, b);
-    else
-        optimized_radix(a, b);
+    if (*b)
+    {
+        tmp = *b;
+        *b = (*b)->next;
+        tmp->next = *a;
+        *a = tmp;
+        write(1, "pa\n", 3);
+    }
+}
+
+void pb(t_stack **a, t_stack **b)
+{
+    t_stack *tmp;
+
+    if (*a)
+    {
+        tmp = *a;
+        *a = (*a)->next;
+        tmp->next = *b;
+        *b = tmp;
+        write(1, "pb\n", 3);
+    }
 }

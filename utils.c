@@ -50,18 +50,26 @@ int get_max_value(t_stack *stack)
 
 int is_valid_number(char *str)
 {
-    int i = 0;
+    int i;
+    int has_digits;
 
+    i = 0;
+    has_digits = 0;
+
+    // Manejar el signo
     if (str[i] == '-' || str[i] == '+')
-        i++;  // Saltar el signo
+        i++;
 
+    // Verificar que haya al menos un dígito y que todos sean dígitos
     while (str[i])
     {
         if (str[i] < '0' || str[i] > '9')
-            return 0;  // No es un número válido
+            return (0);
+        has_digits = 1;
         i++;
     }
-    return 1;  // Es un número válido
+
+    return (has_digits);
 }
 
 int is_duplicate(t_stack *stack, int num)

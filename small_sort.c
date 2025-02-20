@@ -12,30 +12,19 @@
 
 #include "push_swap.h"
 
-void sort_three(t_stack **a)
+// Función auxiliar para mover el máximo número al top
+void move_max_to_top(t_stack **stack)
 {
-    int first, second, third;
+    int max = get_max_value(*stack);
+    int pos = get_position(*stack, max);
+    int size = stack_size(*stack);
 
-    first = (*a)->value;
-    second = (*a)->next->value;
-    third = (*a)->next->next->value;
-
-    if (first > second && second < third && first < third)
-        sa(a);
-    else if (first > second && second > third)
-    {
-        sa(a);
-        rra(a);
-    }
-    else if (first > second && second < third && first > third)
-        ra(a);
-    else if (first < second && second > third && first < third)
-    {
-        sa(a);
-        ra(a);
-    }
-    else if (first < second && second > third)
-        rra(a);
+    if (pos <= size / 2)
+        while ((*stack)->value != max)
+            rb(stack);
+    else
+        while ((*stack)->value != max)
+            rrb(stack);
 }
 
 void move_min_to_top(t_stack **a)
@@ -80,20 +69,7 @@ void sort_five(t_stack **a, t_stack **b)
         pb(a, b);
         size--;
     }
-    sort_three(a);
+    optimized_sort_three(a);
     while (*b)
         pa(a, b);
-}
-
-void	small_sort (t_stack **a, t_stack **b)
-{
-	int	size;
-
-	size = stack_size(*a);
-	if (size == 2)
-		sa(a);
-	else if (size == 3)
-		sort_three(a);
-	else if (size <= 5)
-		sort_five(a, b);
 }
