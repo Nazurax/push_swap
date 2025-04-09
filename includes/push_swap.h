@@ -16,7 +16,6 @@
 # define ERROR_MALLOC 2
 # define ERROR_OVERFLOW 3
 
-
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
