@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushers.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alortiz- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 18:21:55 by alortiz-          #+#    #+#             */
-/*   Updated: 2025/02/20 12:53:48 by alortiz-         ###   ########.fr       */
+/*   Created: 2025/02/18 16:24:52 by alortiz-          #+#    #+#             */
+/*   Updated: 2025/02/22 04:35:02 by alortiz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
+#include "stdio.h"
 
-void pa(t_stack **a, t_stack **b)
+int	main(int argc, char **argv)
 {
-    t_stack *tmp;
+	t_stack	*a;
+	t_stack	*b;
 
-    if (*b)
-    {
-        tmp = *b;
-        *b = (*b)->next;
-        tmp->next = *a;
-        *a = tmp;
-        write(1, "pa\n", 3);
-    }
-}
-
-void pb(t_stack **a, t_stack **b)
-{
-    t_stack *tmp;
-
-    if (*a)
-    {
-        tmp = *a;
-        *a = (*a)->next;
-        tmp->next = *b;
-        *b = tmp;
-        write(1, "pb\n", 3);
-    }
+	if (argc < 2)
+		return (0);
+	a = NULL;
+	b = NULL;
+	a = parse_input(argc, argv);
+	if (!a)
+	{
+		fprintf(stderr, "Error: entrada no válida\n");
+		return (1);
+	}
+	push_swap(&a, &b);
+	free_stack(a);
+	free_stack(b);
+	return (0);
 }

@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alortiz- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 16:27:03 by alortiz-          #+#    #+#             */
-/*   Updated: 2025/02/18 16:27:06 by alortiz-         ###   ########.fr       */
+/*   Created: 2025/02/17 18:21:55 by alortiz-          #+#    #+#             */
+/*   Updated: 2025/02/22 04:43:12 by alortiz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    push_swap(t_stack **a, t_stack **b)
+// Función genérica para mover el primer elemento de `src` a `dst`
+void	push(t_stack **src, t_stack **dst, char *op)
 {
-    int size;
+	t_stack	*tmp;
 
-    if (!*a || is_sorted(*a))
-        return ;
-    size = stack_size(*a);
-    if (size == 2 && (*a)->value > (*a)->next->value)
-        sa(a);
-    else if (size == 3)
-        optimized_sort_three(a);
-    else if (size == 4)
-        sort_four(a, b);
-    else if (size <= 6)
-        sort_five(a, b);
-    else
-        optimized_radix(a, b);
+	if (!src || !*src)
+		return ;
+	tmp = *src;
+	*src = (*src)->next;
+	tmp->next = *dst;
+	*dst = tmp;
+	if (op)
+		write(1, op, 3);
+}
+
+void	pa(t_stack **a, t_stack **b)
+{
+	push(b, a, "pa\n");
+}
+
+void	pb(t_stack **a, t_stack **b)
+{
+	push(a, b, "pb\n");
 }
