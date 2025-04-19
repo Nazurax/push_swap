@@ -11,6 +11,10 @@ ARFLAGS		= rcs
 LIBFT_DIR	= libft
 LIBFT_A		= $(LIBFT_DIR)/libft.a
 
+# === FT_PRINTF ===
+PRINTF_DIR	= ft_printf
+PRINTF_A	= $(PRINTF_DIR)/libftprintf.a
+
 # === DIRECTORIES ===
 SRCS_DIR	= srcs
 OBJS_DIR	= objs
@@ -46,8 +50,8 @@ RESET		= \033[0m
 
 all: $(NAME)
 
-$(NAME): $(LIBFT_A) $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) -o $(NAME)
+$(NAME): $(LIBFT_A) $(PRINTF_A) $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(PRINTF_A) -o $(NAME)
 	@echo "$(GREEN)[✓] Compilado $(NAME) correctamente.$(RESET)"
 
 $(OBJS_DIR)/%.o: %.c
@@ -58,6 +62,9 @@ $(OBJS_DIR)/%.o: %.c
 $(LIBFT_A):
 	@make -C $(LIBFT_DIR)
 
+$(PRINTF_A):
+	@make -C $(PRINTF_DIR)
+
 # =============================
 #         CLEANING
 # =============================
@@ -65,11 +72,13 @@ $(LIBFT_A):
 clean:
 	@rm -rf $(OBJS_DIR)
 	@make -C $(LIBFT_DIR) clean
+	@make -C $(PRINTF_DIR) clean
 	@echo "$(BLUE)[clean] Objetos eliminados.$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
+	@make -C $(PRINTF_DIR) fclean
 	@echo "$(BLUE)[fclean] Binario eliminado.$(RESET)"
 
 re: fclean all

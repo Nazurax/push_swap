@@ -11,31 +11,31 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft.h"
 
-// Manejo flexible de errores con mensaje personalizado
+// Maneja los errores con un mensaje y libera las pilas
 void	handle_error(t_stack **a, t_stack **b, const char *errm, int errc)
 {
 	if (errm)
-		write(2, errm, ft_strlen(errm));
+		ft_putstr_fd((char *)errm, 2);
 	else
-		write(2, "Error\n", 6);
+		ft_putstr_fd("Error\n", 2);
 	free_stacks(a, b);
 	exit(errc);
+}
+
+// Maneja un error simple de entrada con un mensaje estándar
+void	handle_input_error_simple(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	exit(EXIT_FAILURE);
 }
 
 void	free_stacks(t_stack **a, t_stack **b)
 {
 	if (a && *a)
-	{
 		free_stack(*a);
-		*a = NULL;
-	}
 	if (b && *b)
-	{
 		free_stack(*b);
-		*b = NULL;
-	}
 }
 
 void	free_stack(t_stack *stack)
@@ -49,3 +49,4 @@ void	free_stack(t_stack *stack)
 		stack = tmp;
 	}
 }
+

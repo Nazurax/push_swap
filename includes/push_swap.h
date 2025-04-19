@@ -71,6 +71,7 @@ void	rrr(t_stack **a, t_stack **b);
 
 /* ==== ERROR & MEMORY MANAGEMENT ==== */
 void	handle_error(t_stack **a, t_stack **b, const char *errm, int errc);
+void	handle_input_error_simple(void);
 void	free_stack(t_stack *stack);
 void	free_stacks(t_stack **a, t_stack **b);
 

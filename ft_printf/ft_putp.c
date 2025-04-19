@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alortiz- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 16:24:52 by alortiz-          #+#    #+#             */
-/*   Updated: 2025/02/22 04:35:02 by alortiz-         ###   ########.fr       */
+/*   Created: 2025/01/17 10:17:40 by alortiz-          #+#    #+#             */
+/*   Updated: 2025/01/17 10:17:45 by alortiz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+void	ft_putp(void *ptr, size_t *count)
 {
-	t_stack	*a;
-	t_stack	*b;
+	unsigned long long	ptr2;
+	char				*str;
 
-	if (argc < 2)
-		return (0);
-	a = NULL;
-	b = NULL;
-	a = parse_input(argc, argv);
-	if (!a)
-		handle_input_error_simple();
-	push_swap(&a, &b);
-	free_stacks(a, b);
-	return (0);
+	if (!ptr)
+	{
+		ft_puts("(nil)", count);
+		return ;
+	}
+	ptr2 = (unsigned long long)ptr;
+	ft_puts("0x", count);
+	str = ft_utoa_base(ptr2, "0123456789abcdef");
+	if (str)
+	{
+		ft_puts(str, count);
+		free(str);
+	}
 }
-

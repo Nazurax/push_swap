@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alortiz- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 16:24:52 by alortiz-          #+#    #+#             */
-/*   Updated: 2025/02/22 04:35:02 by alortiz-         ###   ########.fr       */
+/*   Created: 2025/01/17 10:18:43 by alortiz-          #+#    #+#             */
+/*   Updated: 2025/01/17 10:18:47 by alortiz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "ft_printf.h"
 
-int	main(int argc, char **argv)
+char	*ft_utoa(unsigned int num)
 {
-	t_stack	*a;
-	t_stack	*b;
+	char			*str;
+	size_t			len;
+	unsigned int	temp;
 
-	if (argc < 2)
-		return (0);
-	a = NULL;
-	b = NULL;
-	a = parse_input(argc, argv);
-	if (!a)
-		handle_input_error_simple();
-	push_swap(&a, &b);
-	free_stacks(a, b);
-	return (0);
+	len = 0;
+	temp = num;
+	if (num == 0)
+		return (ft_handlezero());
+	while (temp)
+	{
+		temp /= 10;
+		len++;
+	}
+	str = calloc_p(len + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	while (len)
+	{
+		--len;
+		str[len] = (num % 10) + '0';
+		num /= 10;
+	}
+	return (str);
 }
-
