@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alortiz- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 16:24:52 by alortiz-          #+#    #+#             */
-/*   Updated: 2025/02/22 04:35:02 by alortiz-         ###   ########.fr       */
+/*   Created: 2025/04/19 10:01:23 by alortiz-          #+#    #+#             */
+/*   Updated: 2025/04/19 10:01:34 by alortiz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_list	*temp;
 
-	if (argc < 2)
-		return (0);
-	a = NULL;
-	b = NULL;
-	a = parse_input(argc, argv);
-	if (!a)
-		handle_input_error_simple();
-	push_swap(&a, &b);
-	free_stacks(a, b);
-	return (0);
+	if (!lst || !del)
+		return ;
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		del((*lst)->content);
+		free(*lst);
+		*lst = temp;
+	}
+	*lst = (NULL);
 }

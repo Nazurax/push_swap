@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alortiz- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 16:24:52 by alortiz-          #+#    #+#             */
-/*   Updated: 2025/02/22 04:35:02 by alortiz-         ###   ########.fr       */
+/*   Created: 2025/04/19 09:58:01 by alortiz-          #+#    #+#             */
+/*   Updated: 2025/04/19 09:58:11 by alortiz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_lstsize(t_list *lst)
 {
-	t_stack	*a;
-	t_stack	*b;
+	int	cnt;
 
-	if (argc < 2)
-		return (0);
-	a = NULL;
-	b = NULL;
-	a = parse_input(argc, argv);
-	if (!a)
-		handle_input_error_simple();
-	push_swap(&a, &b);
-	free_stacks(a, b);
-	return (0);
+	cnt = 0;
+	while (lst)
+	{
+		cnt++;
+		lst = lst->next;
+	}
+	return (cnt);
 }

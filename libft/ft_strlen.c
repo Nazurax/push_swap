@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alortiz- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 16:24:52 by alortiz-          #+#    #+#             */
-/*   Updated: 2025/02/22 04:35:02 by alortiz-         ###   ########.fr       */
+/*   Created: 2024/09/27 17:50:21 by alortiz-          #+#    #+#             */
+/*   Updated: 2024/09/27 17:50:26 by alortiz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+size_t	ft_strlen(const char *str)
 {
-	t_stack	*a;
-	t_stack	*b;
+	size_t	i;
 
-	if (argc < 2)
-		return (0);
-	a = NULL;
-	b = NULL;
-	a = parse_input(argc, argv);
-	if (!a)
-		handle_input_error_simple();
-	push_swap(&a, &b);
-	free_stacks(a, b);
-	return (0);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
+/*int	main(void)
+{
+	char	str[] = "Hola, mundo!";
+	int	leng = ft_strlen(str);
+	printf("Characters in the string: %d\n", leng);
+	return (0);
+}*/
